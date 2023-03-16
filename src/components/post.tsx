@@ -6,22 +6,28 @@ function Post() {
     const [vote, setVote] = useState("");
 
     const upVoteHandler = (event:any) => {
-        if(vote==="" || vote==="down") {
+        if(vote==="") {
             setVoteCount(voteCount+1);
             setVote("up");
         } else if (vote==="up") {
             setVoteCount(voteCount-1);
             setVote("");
+        } else if (vote==="down") {
+            setVoteCount(voteCount+2);
+            setVote("up");
         }
     }
 
     const downVoteHandler = (event:any) => {
-        if(vote==="" || vote==="up") {
+        if(vote==="") {
             setVoteCount(voteCount-1);
             setVote("down");
         } else if (vote==="down") {
             setVoteCount(voteCount+1);
             setVote("");
+        } else if (vote==="up") {
+            setVoteCount(voteCount-2);
+            setVote("down");
         }
     }
 
