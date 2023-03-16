@@ -9,11 +9,11 @@
   width: 100vw;
 }
 
-.post:first-of-type {
+.postCard:first-of-type {
   margin: 0 auto;
 }
 
-.post {
+.postCard {
   display: flex;
   background-color: #219EBC;
   width: 80%;
@@ -24,8 +24,14 @@
   overflow: hidden;
 }
 
-.post h2 {
+.postCard h2 {
   margin-top: 0;
+}
+
+.postBody p {
+  overflow: hidden;
+  text-overflow: clip;
+  max-height: 8ch;
 }
 
 .votes {
@@ -34,7 +40,6 @@
   height: 100%;
   align-items: center;
   margin-right: 1rem;
-  padding-top: 5px;
 }
 
 .votes p {
@@ -51,4 +56,14 @@
 
 #upVote, #downVote {
   color: white;
+}
+
+.postTop {
+  display: flex;
+  flex-direction: row;
+  padding: 7px 0 5px 0;
+}
+
+.postTop p {
+  margin: 0 .5rem;
 }
