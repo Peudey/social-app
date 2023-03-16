@@ -9,11 +9,15 @@
   width: 100vw;
 }
 
+.post:first-of-type {
+  margin: 0 auto;
+}
+
 .post {
   display: flex;
   background-color: #219EBC;
   width: 80%;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 5px;
   border-radius: 5px;
   color: white;
