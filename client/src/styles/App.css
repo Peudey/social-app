@@ -9,7 +9,7 @@
   width: 100vw;
 }
 
-.postCard:first-of-type {
+.postCard:first-of-type, .post:first-of-type {
   margin: 0 auto;
 }
 

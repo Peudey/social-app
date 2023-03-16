@@ -1,13 +1,9 @@
 import React from 'react';
-import PostCard from './postCard';
 
-function Home() {
+const Home = ({children}:any) => {
   return (
     <div className="App">
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
+      {children}
     </div>
   );
 }
