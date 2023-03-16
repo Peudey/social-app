@@ -13,7 +13,7 @@
   margin: 0 auto;
 }
 
-.postCard {
+.postCard, .post {
   display: flex;
   background-color: #219EBC;
   width: 80%;
@@ -24,11 +24,11 @@
   overflow: hidden;
 }
 
-.postCard h2 {
+.postCard h2, .post h2 {
   margin-top: 0;
 }
 
-.postBody p {
+.postCard .postBody p {
   overflow: hidden;
   text-overflow: clip;
   max-height: 8ch;
