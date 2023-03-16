@@ -1,0 +1,50 @@
+:root {
+  --color-primary: #023047;
+  --color-secondary: #FB8500;
+}
+
+.App {
+  background-color: var(--color-primary);
+  height: 100vh;
+  width: 100vw;
+}
+
+.post {
+  display: flex;
+  background-color: #219EBC;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  overflow: hidden;
+}
+
+.post h2 {
+  margin-top: 0;
+}
+
+.votes {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  margin-right: 1rem;
+  padding-top: 5px;
+}
+
+.votes p {
+  margin: 0;
+}
+
+.vote {
+  color: black;
+}
+
+.vote:hover {
+  color: white;
+}
+
+#upVote, #downVote {
+  color: white;
+}
