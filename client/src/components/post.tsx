@@ -13,7 +13,7 @@ const Post = () => {
         {postAuthor:"author3", postBody:"body3", postId:"125", postTitle:"title3"},
         {postAuthor:"author4", postBody:"body4", postId:"126", postTitle:"title4"},
     ]
-    if(id!==undefined) {
+    if(id!==undefined && posts[parseInt(id)]) {
         let postAuthor = posts[parseInt(id)].postAuthor;
         let postBody = posts[parseInt(id)].postBody;
         let postTitle = posts[parseInt(id)].postTitle;
@@ -32,7 +32,7 @@ const Post = () => {
             </div>
           );
     } else {
-        return(<h3>page not found</h3>)
+        return(<h3>page not found</h3>);
     }
   }
   
