@@ -12,7 +12,7 @@ function App() {
         <Route path='/' element={<Home children={<PostFeed />}/>}></Route>
         <Route path='/subreddit' element={<Home children={<div>subreddit goes here</div>}/>}></Route>
         <Route path='/author' element={<Home children={<div>author goes here</div>}/>}></Route>
-        <Route path='/subreddit/post' element={<Home children={<Post />}/>}></Route>
+        <Route path='/subreddit/post/:id' element={<Home children={<Post/>}/>}></Route>
       </Routes>
     </BrowserRouter>
   );

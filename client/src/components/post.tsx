@@ -1,22 +1,39 @@
 import React from 'react';
 import PostVotes from './postVotes';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import postTypes from './types';
 
-function Post() {
-    return (
-      <div className="post">
-        <PostVotes />
-        <div className="postBody">
-            <span className='postTop'>
-                <Link to="/subreddit">subreddit</Link>
-                <p>posted by </p>
-                <Link to="/author">subreddit</Link>
-            </span>
-            <Link to="/subreddit/post">Post Title</Link>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-      </div>
-    );
+const Post = () => {
+    let {id} = useParams();
+
+    let posts : postTypes[];
+    posts = [
+        {postAuthor:"author1", postBody:"body1", postId:"123", postTitle:"title1"},
+        {postAuthor:"author2", postBody:"body2", postId:"124", postTitle:"title2"},
+        {postAuthor:"author3", postBody:"body3", postId:"125", postTitle:"title3"},
+        {postAuthor:"author4", postBody:"body4", postId:"126", postTitle:"title4"},
+    ]
+    if(id!==undefined) {
+        let postAuthor = posts[parseInt(id)].postAuthor;
+        let postBody = posts[parseInt(id)].postBody;
+        let postTitle = posts[parseInt(id)].postTitle;
+        return (
+            <div className="post">
+              <PostVotes />
+              <div className="postBody">
+                  <span className='postTop'>
+                      <Link to="/subreddit">subreddit</Link>
+                      <p>posted by </p>
+                      <Link to="/author">{postAuthor}</Link>
+                  </span>
+                  <h2>{postTitle}</h2>
+                  <p>{postBody}</p>
+              </div>
+            </div>
+          );
+    } else {
+        return(<h3>page not found</h3>)
+    }
   }
   
   export default Post;
