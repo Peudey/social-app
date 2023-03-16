@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
+import { Link } from 'react-router-dom';
 
-function Post() {
+function PostCard() {
     const [voteCount, setVoteCount] = useState(1);
     const [vote, setVote] = useState("");
 
@@ -46,15 +47,15 @@ function Post() {
         </div>
         <div className="postBody">
             <span className='postTop'>
-                <a href="/">subreddit</a>
+                <Link to="/subreddit">subreddit</Link>
                 <p>posted by </p>
-                <a href="/">author</a>
+                <Link to="/author">subreddit</Link>
             </span>
-            <h2>post title</h2>
+            <Link to="/subreddit/post">Post Title</Link>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </div>
     );
   }
   
-  export default Post;
+  export default PostCard;
