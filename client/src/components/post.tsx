@@ -16,7 +16,7 @@ const Post = () => {
     if(id!==undefined && post !== undefined) {
         return (
             <div className="post">
-              <PostVotes />
+              <PostVotes score={post.score}/>
               <div className="postBody">
                   <span className='postTop'>
                       <Link to="/subreddit">subreddit</Link>

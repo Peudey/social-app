@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 
-function PostVotes() {
-    const [voteCount, setVoteCount] = useState(1);
+function PostVotes(props: {score: number}) {
+    let {score} = props;
+    const [voteCount, setVoteCount] = useState(score);
     const [vote, setVote] = useState("");
 
     const upVoteHandler = (event:any) => {
