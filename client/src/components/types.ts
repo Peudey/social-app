@@ -1,8 +1,10 @@
 interface postTypes {
-    postBody?: string,
-    postTitle?: string,
-    postAuthor?: string,
-    postId?: string,
+    id?: string,
+    author?: string,
+    title?: string,
+    body?: string,
+    subreddit?: string,
+    score: number,
 }
 
 export default postTypes;

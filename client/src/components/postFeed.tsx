@@ -1,23 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import PostCard from './postCard';
 import postTypes from './types';
 
-function PostFeed() {
-    let posts : postTypes[];
-    posts = [
-        {postAuthor:"author1", postBody:"body1", postId:"0", postTitle:"title1"},
-        {postAuthor:"author2", postBody:"body2", postId:"1", postTitle:"title2"},
-        {postAuthor:"author3", postBody:"body3", postId:"2", postTitle:"title3"},
-        {postAuthor:"author4", postBody:"body4", postId:"3", postTitle:"title4"},
-      ]
+const PostFeed = () => {
+    const[posts, setPosts] = useState<postTypes[]|undefined>();
 
-  return (
-    <div>
-        {posts.map(({postAuthor, postBody, postId, postTitle}) => (
-            <PostCard postAuthor={postAuthor} postBody={postBody} postId={postId} postTitle={postTitle} />
-        ))}
-    </div>
-  );
+    useEffect(()=>{ 
+        axios.get(`http://localhost:4000/api/getposts`).then(res => {
+            setPosts(res.data);
+        });
+    }, []);
+
+    if(posts !== undefined) {
+        return (
+            <div>
+                {posts.map(({author, body, id, title, score}) => (
+                    <PostCard author={author} body={body} id={id} title={title} score={score}/>
+                ))}
+            </div>
+        );
+    } else {
+        return(
+        <div>
+            Unable to load feed
+        </div>
+        )
+    }
 }
 
 export default PostFeed;

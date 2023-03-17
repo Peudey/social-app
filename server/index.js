@@ -23,6 +23,14 @@ app.get("/api/getFromId/:id", (req,res)=>{
     });
 });
 
+app.get("/api/getPosts", (req,res)=>{
+    db.query("SELECT * from post limit 10", (err, result)=> {
+        if(err) console.log(err);
+        console.log(result);
+        res.send(result);
+    });
+});
+
 app.listen(PORT, ()=>{
     console.log(`Server is running on ＄{PORT}`)
 });
