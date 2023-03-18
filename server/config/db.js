@@ -1,8 +1,8 @@
 import mysql from 'mysql';
 const db = mysql.createConnection({
-    host: "172.23.112.1",
-    user: "wsl",
-    password: "root",
+    host: "localhost",
+    user: "root",
+    password: "password",
     database:"social_app" 
 });
 export default db;
