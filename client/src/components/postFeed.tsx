@@ -7,7 +7,7 @@ const PostFeed = () => {
     const[posts, setPosts] = useState<postTypes[]|undefined>();
 
     useEffect(()=>{ 
-        axios.get(`http://localhost:4000/api/getposts`).then(res => {
+        axios.get(`http://localhost:4000/post/`).then(res => {
             setPosts(res.data);
         });
     }, []);

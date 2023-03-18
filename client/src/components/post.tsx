@@ -8,7 +8,7 @@ const Post = () => {
     let {id} = useParams();
 
     useEffect(()=>{ 
-        axios.get(`http://localhost:4000/api/getFromId/${id}`).then(res => {
+        axios.get(`http://localhost:4000/post/${id}`).then(res => {
             setPost(res.data[0]);
         });
     }, []);

@@ -1,36 +1,14 @@
-const db = require("./config/db");
-const express = require("express");
-const cors = require('cors')
+import express from "express";
+import cors from 'cors';
+import postRouter from "./routes/posts.js";
 
-app = express();
-const  PORT = 4000;
+const app = express();
+const PORT = 4000;
+
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
+app.use("/post",postRouter);
 
-db.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
-});
-
-app.get("/api/getFromId/:id", (req,res)=>{
-    const id = req.params.id;
-    console.log(id);
-
-    db.query("SELECT * from post WHERE id= ?", id, (err, result)=> {
-        if(err) console.log(err);
-        console.log(result);
-        res.send(result);
-    });
-});
-
-app.get("/api/getPosts", (req,res)=>{
-    db.query("SELECT * from post limit 10", (err, result)=> {
-        if(err) console.log(err);
-        console.log(result);
-        res.send(result);
-    });
-});
-
-app.listen(PORT, ()=>{
-    console.log(`Server is running on ＄{PORT}`)
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
 });
