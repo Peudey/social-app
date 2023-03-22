@@ -103,6 +103,8 @@ body {
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 1rem;
   padding: 1rem 0;
@@ -114,5 +116,28 @@ body {
   color: black;
   font-size: 1.5rem;
   font-weight: 600;
-  margin-left: 1%;
+  margin: 0 1%;
+}
+
+.createPost {
+  margin: auto;
+  width: 60%;
+}
+
+.createPost form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: var(--color-secondary);
+  padding: 1rem;
+  border-radius: 3px;
+}
+
+.createPost form input {
+  color: black;
+  font-size: 1rem;
+}
+
+.createPost #body {
+  min-height: 30vh;
 }
