@@ -4,9 +4,10 @@ export async function getPost(req,res) {
     const id = req.params.id;
     console.log(id);
 
-    let query = "SELECT p.id, p.title, p.body, p.subreddit, p.score, u.username " +
-    "from post p " +
-    "JOIN users u ON p.authorId = u.id " +
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username " +
+    "from posts p " +
+    "JOIN users u ON p.aid = u.id " +
+    "JOIN subreddits s ON p.sid = s.id " +
     "WHERE p.id = ?;";
 
     db.query(query, id, (err, result)=> {
@@ -17,9 +18,10 @@ export async function getPost(req,res) {
 }
 
 export async function getPosts(req,res) {
-    let query = "SELECT p.id, p.title, p.body, p.subreddit, p.score, u.username " +
-    "from post p " +
-    "JOIN users u ON p.authorId = u.id ";
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username " +
+    "from posts p " +
+    "JOIN users u ON p.aid = u.id " +
+    "JOIN subreddits s ON p.sid = s.id ";
 
     db.query(query, (err, result) => {
         if(err) console.log(err);
