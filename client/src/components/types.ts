@@ -1,6 +1,6 @@
 interface postTypes {
     id?: string,
-    author?: string,
+    username?: string,
     title?: string,
     body?: string,
     subreddit?: string,

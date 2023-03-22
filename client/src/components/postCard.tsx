@@ -4,7 +4,7 @@ import PostVotes from './postVotes';
 import postTypes from './types';
 
 const PostCard = (props:postTypes) => {
-    const {body, title, author, id, score} = props;
+    const {body, title, username, id, score} = props;
 
     return (
       <div className="postCard">
@@ -13,7 +13,7 @@ const PostCard = (props:postTypes) => {
             <span className='postTop'>
                 <Link to="/subreddit">subreddit</Link>
                 <p>posted by </p>
-                <Link to="/author">{author}</Link>
+                <Link to="/author">{username}</Link>
             </span>
             <Link to={`/subreddit/post/${id}`}>{title}</Link>
             <p>{body}</p>

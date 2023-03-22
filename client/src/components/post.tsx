@@ -21,7 +21,7 @@ const Post = () => {
                   <span className='postTop'>
                       <Link to="/subreddit">subreddit</Link>
                       <p>posted by </p>
-                      <Link to="/author">{post.author}</Link>
+                      <Link to="/author">{post.username}</Link>
                   </span>
                   <h2>{post.title}</h2>
                   <p>{post.body}</p>

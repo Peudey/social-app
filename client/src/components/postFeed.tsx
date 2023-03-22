@@ -15,8 +15,8 @@ const PostFeed = () => {
     if(posts !== undefined) {
         return (
             <div>
-                {posts.map(({author, body, id, title, score}) => (
-                    <PostCard author={author} body={body} id={id} title={title} score={score}/>
+                {posts.map(({username, body, id, title, score}) => (
+                    <PostCard username={username} body={body} id={id} title={title} score={score}/>
                 ))}
             </div>
         );
