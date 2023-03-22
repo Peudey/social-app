@@ -19,7 +19,7 @@ const Post = () => {
               <PostVotes score={post.score}/>
               <div className="postBody">
                   <span className='postTop'>
-                      <Link to="/subreddit">subreddit</Link>
+                      <Link to="/subreddit">{post.subreddit}</Link>
                       <p>posted by </p>
                       <Link to="/author">{post.username}</Link>
                   </span>
