@@ -1,11 +1,23 @@
 :root {
-  --color-primary: #023047;
-  --color-secondary: #219EBC;
-  --color-accent: #FB8500;
+  --color-primary: #d2e3e6;
+  --color-secondary: #ffffff;
+  --color-accent: #EB5E28;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: var(--color-primary);
+}
+
+body {
+  padding-bottom: 1rem;
 }
 
 .App {
-  background-color: var(--color-primary);
   min-height: 100vh;
   width: 100%;
 }
@@ -20,9 +32,18 @@
   width: 80%;
   margin: 10px auto;
   padding: 5px;
-  border-radius: 5px;
-  color: white;
+  border-radius: 3px;
+  color: black;
   overflow: hidden;
+}
+
+.postCard a, .post a {
+  text-decoration: none;
+  color: black;
+}
+
+.postCard a:hover, .post a:hover {
+  text-decoration: underline;
 }
 
 .postCard h2, .post h2 {
@@ -33,6 +54,10 @@
   overflow: hidden;
   text-overflow: clip;
   max-height: 8ch;
+}
+
+.postCard:hover {
+  scale: 101%;
 }
 
 .votes {
@@ -51,12 +76,20 @@
   color: black;
 }
 
-.vote:hover {
-  color: white;
+.vote:first-child:hover {
+  color: #E63946;
 }
 
-#upVote, #downVote {
-  color: white;
+.vote:last-child:hover {
+  color: #457B9D;
+}
+
+#upVote {
+  color: #E63946;
+}
+
+#downVote {
+  color: #457B9D;
 }
 
 .postTop {
@@ -78,7 +111,7 @@
 
 .header a {
   text-decoration: none;
-  color: white;
+  color: black;
   font-size: 1.5rem;
   font-weight: 600;
   margin-left: 1%;

@@ -15,7 +15,7 @@ const PostCard = (props:postTypes) => {
                 <p>posted by </p>
                 <Link to="/author">{username}</Link>
             </span>
-            <Link to={`/subreddit/post/${id}`}>{title}</Link>
+            <Link to={`/subreddit/post/${id}`}><h2>{title}</h2></Link>
             <p>{body}</p>
         </div>
       </div>
