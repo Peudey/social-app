@@ -5,12 +5,27 @@ import postTypes from './types';
 
 const PostFeed = () => {
     const[posts, setPosts] = useState<postTypes[]|undefined>();
+    const[page, setPage] = useState(0);
 
     useEffect(()=>{ 
-        axios.get(`http://localhost:4000/post/`).then(res => {
+        populateFeed();
+    }, [page]);
+
+    const populateFeed = () => {
+        axios.get(`http://localhost:4000/post/page/${page}`).then(res => {
             setPosts(res.data);
         });
-    }, []);
+    }
+
+    const nextHandler = () => {
+        setPage(page+1);
+    }
+
+    const prevHandler = () => {
+        if (page !== 0) {
+            setPage(page-1);
+        }
+    }
 
     if(posts !== undefined) {
         return (
@@ -18,6 +33,8 @@ const PostFeed = () => {
                 {posts.map(({username, body, id, title, score, subreddit}) => (
                     <PostCard username={username} body={body} id={id} title={title} score={score} subreddit={subreddit}/>
                 ))}
+                <button onClick={(nextHandler)}>next</button>
+                <button onClick={(prevHandler)}>prev</button>
             </div>
         );
     } else {

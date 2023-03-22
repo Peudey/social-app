@@ -4,7 +4,7 @@ export async function getPost(req,res) {
     const id = req.params.id;
     console.log(id);
 
-    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username " +
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted " +
     "from posts p " +
     "JOIN users u ON p.aid = u.id " +
     "JOIN subreddits s ON p.sid = s.id " +
@@ -18,12 +18,17 @@ export async function getPost(req,res) {
 }
 
 export async function getPosts(req,res) {
-    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username " +
-    "from posts p " +
-    "JOIN users u ON p.aid = u.id " +
-    "JOIN subreddits s ON p.sid = s.id ";
+    const page = req.params.page;
 
-    db.query(query, (err, result) => {
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted " +
+        "from posts p " +
+        "JOIN users u ON P.aid = u.id " +
+        "JOIN subreddits s ON p.sid = s.id " +
+        "ORDER BY p.score DESC, posted ASC " +
+        "LIMIT 10 " +
+        "OFFSET ?;";
+
+    db.query(query, page*10, (err, result) => {
         if(err) console.log(err);
         console.log(result);
         res.send(result);
