@@ -33,11 +33,11 @@ const PostFeed = () => {
         return (
             <div>
                 <span className='feedSort'>
-                    <button onClick={()=>{if(sort!==0)setSort(0)}}>hot</button>
-                    <button onClick={()=>{if(sort!==1)setSort(1)}}>new</button>
-                    <button onClick={()=>{if(sort!==2)setSort(2)}}>day</button>
-                    <button onClick={()=>{if(sort!==3)setSort(3)}}>month</button>
-                    <button onClick={()=>{if(sort!==4)setSort(4)}}>year</button>
+                    <button className={sort===0?"active":""} onClick={()=>{if(sort!==0)setSort(0)}}>Hot</button>
+                    <button className={sort===1?"active":""} onClick={()=>{if(sort!==1)setSort(1)}}>New</button>
+                    <button className={sort===2?"active":""} onClick={()=>{if(sort!==2)setSort(2)}}>Day</button>
+                    <button className={sort===3?"active":""} onClick={()=>{if(sort!==3)setSort(3)}}>Month</button>
+                    <button className={sort===4?"active":""} onClick={()=>{if(sort!==4)setSort(4)}}>Year</button>
                 </span>
                 {posts.map(({username, body, id, title, score, subreddit, posted}) => (
                     <PostCard username={username} body={body} id={id} title={title} score={score} subreddit={subreddit} posted={posted}/>

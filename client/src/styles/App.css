@@ -144,7 +144,26 @@ body {
 
 .feedSort {
   display: flex;
-  margin: 1rem calc(10% - 5px);
+  background-color: var(--color-secondary);
+  margin: 0.5rem calc(10% - 5px);
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.feedSort button {
+  font-size: 1rem;
+  background-color: var(--color-secondary);
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.feedSort button:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.feedSort .active {
+  background-color: rgba(0,0,0,0.1);
 }
 
 .feedSort button:not(:first-of-type) {
