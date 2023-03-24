@@ -24,11 +24,11 @@ export async function getPosts(req,res) {
     let query = "SELECT * " +
     "from posts p " +
     "JOIN users u ON P.aid = u.id " + 
-    "ORDER BY (score - (- 0.2 * datediff(p.posted, ?))) DESC " +
+    "ORDER BY (power(score, 3)/(0.5 * datediff(?, p.posted))) DESC " +
     "LIMIT 10 " +
     "OFFSET ?;";
 
-    db.query(query, [moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD"), page*10], (err, result) => {
+    db.query(query, [moment(Date.now()).format("YYYY-MM-DD"), page*10], (err, result) => {
         if(err) console.log(err);
         console.log(result);
         res.send(result);
