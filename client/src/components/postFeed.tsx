@@ -30,8 +30,8 @@ const PostFeed = () => {
     if(posts !== undefined) {
         return (
             <div>
-                {posts.map(({username, body, id, title, score, subreddit}) => (
-                    <PostCard username={username} body={body} id={id} title={title} score={score} subreddit={subreddit}/>
+                {posts.map(({username, body, id, title, score, subreddit, posted}) => (
+                    <PostCard username={username} body={body} id={id} title={title} score={score} subreddit={subreddit} posted={posted}/>
                 ))}
                 <button onClick={(nextHandler)}>next</button>
                 <button onClick={(prevHandler)}>prev</button>

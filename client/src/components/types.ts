@@ -4,6 +4,7 @@ interface postTypes {
     title?: string,
     body?: string,
     subreddit?: string,
+    posted: Date,
     score: number,
 }
 

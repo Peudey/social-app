@@ -4,7 +4,7 @@ import PostVotes from './postVotes';
 import postTypes from './types';
 
 const PostCard = (props:postTypes) => {
-    const {body, title, username, id, score, subreddit} = props;
+    const {body, title, username, id, score, subreddit, posted} = props;
 
     return (
       <div className="postCard">
@@ -14,6 +14,7 @@ const PostCard = (props:postTypes) => {
                 <Link to={`/${subreddit}`}>{subreddit}</Link>
                 <p>posted by </p>
                 <Link to="/author">{username}</Link>
+                <p>on {new Date(posted).toLocaleDateString()}</p>
             </span>
             <Link to={`/${subreddit}/post/${id}`}><h2>{title}</h2></Link>
             <p>{body}</p>
