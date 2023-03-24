@@ -6,10 +6,33 @@ const CreatePost = () => {
     const [body, setBody] = useState("");
     const [subreddit, setSubreddit] = useState("");
 
+
+    const handleSubmit = async (e:any) => {
+        e.preventDefault();
+
+        axios.post("http://localhost:4000/post/submit", {
+                title: title,
+                body: body,
+                sid: subreddit,
+                aid: 1,
+            }
+        ).then ((response) => {
+            console.log(response);
+            if(response.status === 200) {
+                setTitle("");
+                setBody(response.data);
+                setSubreddit("");
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+
     return(
         <div className="createPost">
             <h2>Create Post</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     id="title" 
                     type="text"
