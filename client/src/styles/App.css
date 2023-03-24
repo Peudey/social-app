@@ -141,3 +141,12 @@ body {
 .createPost #body {
   min-height: 30vh;
 }
+
+.feedSort {
+  display: flex;
+  margin: 1rem calc(10% - 5px);
+}
+
+.feedSort button:not(:first-of-type) {
+  margin-left: .5rem;
+}
