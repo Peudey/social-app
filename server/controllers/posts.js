@@ -1,6 +1,5 @@
 import db from "../config/db.js";
 import moment from "moment";
-import { parse } from "querystring";
 
 export async function getPost(req,res) {
     const id = req.params.id;
@@ -54,9 +53,12 @@ export async function publishPost(req, res) {
     let query = "insert into posts(aid, title, sid, body, score, posted) values(?);";
 
     db.query(query, [values], (err, result) => {
-        if(err) console.log(err);
+        if(err) {
+            console.log(err)
+            res.status(400).json(err);
+        };
         console.log(result);
-        res.send(result);
+        res.status(200).json("Post submitted!");
     });
 }
 
