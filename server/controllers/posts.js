@@ -26,20 +26,20 @@ export async function getPosts(req,res) {
     
     switch(sort) {
         case '0':
-            sortQuery = "ORDER BY (power(score, 3)/(0.5 * datediff('"+ moment(Date.now()).format("YYYY-MM-DD") + "', p.posted))) DESC";
+            sortQuery = "ORDER BY (power(score, 3)/(0.5 * datediff('"+ moment(Date.now()).format("YYYY-MM-DD") + "', p.posted))) DESC ";
             break;
         case '1':
-            sortQuery = "ORDER BY posted ASC";
+            sortQuery = "ORDER BY posted ASC ";
             break;
         case '2':
-            sortQuery = "WHERE p.posted >= '" + moment(Date.now()).subtract(1, 'day').format("YYYY-MM-DD") + "'ORDER BY score DESC";
+            sortQuery = "WHERE p.posted >= '" + moment(Date.now()).subtract(1, 'day').format("YYYY-MM-DD") + "'ORDER BY score DESC ";
             break;
         case '3':
-             sortQuery = "WHERE p.posted >= '" + moment(Date.now()).subtract(1, 'month').format("YYYY-MM-DD") + "' " 
+             sortQuery = "WHERE p.posted >= '" + moment(Date.now()).subtract(1, 'month').format("YYYY-MM-DD") + "' " + 
              "AND p.posted <= '" + moment(Date.now()).format("YYYY-MM-DD") + "'ORDER BY score DESC ";
              break;
         case '4':
-            sortQuery = "WHERE p.posted >= '" + moment(Date.now()).subtract(1, 'year').format("YYYY-MM-DD") + "' " 
+            sortQuery = "WHERE p.posted >= '" + moment(Date.now()).subtract(1, 'year').format("YYYY-MM-DD") + "' " +
             "AND p.posted <= '" + moment(Date.now()).format("YYYY-MM-DD") + "'ORDER BY score DESC ";
             break;
     }
@@ -52,6 +52,7 @@ export async function getPosts(req,res) {
     "LIMIT 10 " +
     "OFFSET ?;";
 
+    console.log(query);
     db.query(query, page * 10, (err, result) => {
         if(err) console.log(err);
         console.log(result);
