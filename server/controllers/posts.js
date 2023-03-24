@@ -21,15 +21,14 @@ export async function getPost(req,res) {
 export async function getPosts(req,res) {
     const page = req.params.page;
 
-    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted " +
-        "from posts p " +
-        "JOIN users u ON P.aid = u.id " +
-        "JOIN subreddits s ON p.sid = s.id " +
-        "ORDER BY p.score DESC, posted ASC " +
-        "LIMIT 10 " +
-        "OFFSET ?;";
+    let query = "SELECT * " +
+    "from posts p " +
+    "JOIN users u ON P.aid = u.id " + 
+    "ORDER BY (score - (- 0.2 * datediff(p.posted, ?))) DESC " +
+    "LIMIT 10 " +
+    "OFFSET ?;";
 
-    db.query(query, page*10, (err, result) => {
+    db.query(query, [moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD"), page*10], (err, result) => {
         if(err) console.log(err);
         console.log(result);
         res.send(result);
