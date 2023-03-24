@@ -8,7 +8,7 @@ const PostCard = (props:postTypes) => {
 
     return (
       <div className="postCard">
-        <PostVotes score={score}/>
+        <PostVotes score={score} key={score}/>
         <div className="postBody">
             <span className='postTop'>
                 <Link to={`/${subreddit}`}>{subreddit}</Link>
