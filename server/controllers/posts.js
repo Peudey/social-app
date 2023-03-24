@@ -44,9 +44,10 @@ export async function getPosts(req,res) {
             break;
     }
 
-    let query = "SELECT * " +
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted " +
     "from posts p " +
-    "JOIN users u ON P.aid = u.id " + 
+    "JOIN users u ON p.aid = u.id " +
+    "JOIN subreddits s ON p.sid = s.id " +
     sortQuery + " " +
     "LIMIT 10 " +
     "OFFSET ?;";
