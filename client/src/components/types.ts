@@ -1,5 +1,5 @@
 interface postTypes {
-    id?: string,
+    id: number,
     username?: string,
     title?: string,
     body?: string,
