@@ -5,10 +5,11 @@ export async function getPost(req,res) {
     const id = req.params.id;
     console.log(id);
 
-    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted " +
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted, pv.vote " +
     "from posts p " +
     "JOIN users u ON p.aid = u.id " +
     "JOIN subreddits s ON p.sid = s.id " +
+    "left join postVotes pv ON pv.pid = p.id AND pv.uid = 1 " +
     "WHERE p.id = ?;";
 
     db.query(query, id, (err, result)=> {
@@ -44,10 +45,11 @@ export async function getPosts(req,res) {
             break;
     }
 
-    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted " +
+    let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted, pv.vote " +
     "from posts p " +
     "JOIN users u ON p.aid = u.id " +
     "JOIN subreddits s ON p.sid = s.id " +
+    "left join postVotes pv ON pv.pid = p.id AND pv.uid = 1 " +
     sortQuery + " " +
     "LIMIT 10 " +
     "OFFSET ?;";

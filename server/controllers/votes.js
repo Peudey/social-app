@@ -3,12 +3,11 @@ import db from "../config/db.js";
 export async function addVote(req,res) {
     let values = [
         req.body.postId,
-        req.body.commentId,
         req.body.userId,
         req.body.vote,
     ]
 
-    let query = "insert into votes(pid, cid, uid, vote) values(?);";
+    let query = "insert into postVotes(pid, uid, vote) values(?);";
 
     db.query(query, [values], (err, result) => {
         if(err) {

@@ -2,38 +2,39 @@ import React, { useState } from 'react';
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 import axios from 'axios';
 
-function PostVotes(props: {score: number, id: number}) {
+function PostVotes(props: {score: number, id: number, vote:number}) {
     const[score, setScore] = useState(props.score);
-    const [vote, setVote] = useState("");
+    const [postVote, setVote] = useState<number|null>(props.vote);
+    console.log(postVote);
 
     const upVoteHandler = (event:any) => {
-        if(vote==="") {
+        if(postVote===null) {
             setScore(score + 1);
-            setVote("up");
+            setVote(1);
             submitVote(1);
-        } else if (vote==="up") {
+        } else if (postVote===1) {
             setScore(score - 1);
-            setVote("");
+            setVote(null);
             removeVote();
-        } else if (vote==="down") {
+        } else if (postVote===0) {
             setScore(score + 2);
-            setVote("up");
+            setVote(1);
             submitVote(1);
         }
     }
 
     const downVoteHandler = (event:any) => {
-        if(vote==="") {
+        if(postVote===null) {
             setScore(score - 1);
-            setVote("down");
+            setVote(0);
             submitVote(0);
-        } else if (vote==="down") {
+        } else if (postVote===0) {
             setScore(score + 1);
-            setVote("");
+            setVote(null);
             removeVote();
-        } else if (vote==="up") {
+        } else if (postVote===1) {
             setScore(score - 2);
-            setVote("down");
+            setVote(0);
             submitVote(0);
         }
         
@@ -42,7 +43,6 @@ function PostVotes(props: {score: number, id: number}) {
     const submitVote = (vote:number) => {
         axios.post("http://localhost:4000/vote/add", {
                 postId: props.id,
-                commentId: null,
                 userId: 1,
                 vote: vote,
             }).then ((response) => {
@@ -66,14 +66,14 @@ function PostVotes(props: {score: number, id: number}) {
 
   return (
     <div className="votes">
-        {vote!=="up"?
-            <BiUpArrowAlt className="vote" size={40} onClick={upVoteHandler}/>:
-            <BiUpArrowAlt className="vote" id="upVote" size={40} onClick={upVoteHandler}/>
+        {postVote===1?
+            <BiUpArrowAlt className="vote" id="upVote" size={40} onClick={upVoteHandler}/>:
+            <BiUpArrowAlt className="vote" size={40} onClick={upVoteHandler}/>
         }
         <p>{score}</p>
-        {vote!=="down"?
-            <BiDownArrowAlt className="vote" size={40} onClick={downVoteHandler}/>:
-            <BiDownArrowAlt className="vote" id="downVote" size={40} onClick={downVoteHandler}/>
+        {postVote===0?
+            <BiDownArrowAlt className="vote" id="downVote" size={40} onClick={downVoteHandler}/>:
+            <BiDownArrowAlt className="vote" size={40} onClick={downVoteHandler}/>
         }
     </div>
   );

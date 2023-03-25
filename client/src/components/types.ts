@@ -6,6 +6,7 @@ interface postTypes {
     subreddit?: string,
     posted: Date,
     score: number,
+    vote: number,
 }
 
 export default postTypes;
