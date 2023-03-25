@@ -8,7 +8,6 @@ export async function addVote(req,res) {
         req.body.vote,
     ]
 
-    console.log(values);
     let query = "insert into votes(pid, cid, uid, vote) values(?);";
 
     db.query(query, [values], (err, result) => {
@@ -19,9 +18,9 @@ export async function addVote(req,res) {
         console.log(result);
     });
 
-    query = "update posts set score = score + 1 where id = ?;"
+    query = "update posts set score = score + (?) where id = ?;"
 
-    db.query(query, values[0], (err, result) => {
+    db.query(query, [req.body.vote===1?1:-1,values[0]], (err, result) => {
         if(err) {
             console.log(err);
             res.status(400).json(err);
