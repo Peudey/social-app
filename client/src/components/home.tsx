@@ -4,8 +4,10 @@ import Header from './header';
 const Home = ({children}:any) => {
   return (
     <div className="App">
-        <Header />
-      {children}
+      <Header />
+      <div className='content'>
+        {children}
+      </div>
     </div>
   );
 }

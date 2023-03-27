@@ -6,6 +6,7 @@ const Header = () => {
     <div className="header">
       <a href='/'>Social App</a>
       <Link to="/post">Create Post</Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 }

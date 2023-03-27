@@ -31,7 +31,7 @@ const PostFeed = () => {
 
     if(posts !== undefined) {
         return (
-            <div>
+            <div className='postFeed'>
                 <span className='feedSort'>
                     <button className={sort===0?"active":""} onClick={()=>{if(sort!==0)setSort(0)}}>Hot</button>
                     <button className={sort===1?"active":""} onClick={()=>{if(sort!==1)setSort(1)}}>New</button>
