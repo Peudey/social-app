@@ -13,7 +13,7 @@ const PostCard = (props:postTypes) => {
             <span className='postTop'>
                 <Link to={`/${subreddit}`}>{subreddit}</Link>
                 <p>posted by </p>
-                <Link to="/author">{username}</Link>
+                <Link to={`/user/${username}`}>{username}</Link>
                 <p>on {new Date(posted).toLocaleDateString()}</p>
             </span>
             <Link to={`/${subreddit}/post/${id}`}><h2>{title}</h2></Link>

@@ -5,6 +5,7 @@ import Post from './components/post';
 import PostFeed from './components/postFeed';
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import CreatePost from './components/createPost';
+import User from './components/user';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path='/' element={<Home children={<PostFeed />}/>}></Route>
         <Route path='/post' element={<Home children={<CreatePost />}/>}></Route>
         <Route path='/:subreddit' element={<Home children={<div>subreddit goes here</div>}/>}></Route>
-        <Route path='/author' element={<Home children={<div>author goes here</div>}/>}></Route>
+        <Route path='/user/:username' element={<Home children={<User />}/>}></Route>
         <Route path='/:subreddit/post/:id' element={<Home children={<Post/>}/>}></Route>
       </Routes>
     </BrowserRouter>
