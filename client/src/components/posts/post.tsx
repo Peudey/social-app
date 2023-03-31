@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import PostVotes from './postVotes';
 import { Link, useParams } from 'react-router-dom';
 
@@ -8,10 +7,14 @@ const Post = () => {
     let {id} = useParams();
 
     useEffect(()=>{ 
-        axios.get(`http://localhost:4000/post/${id}`).then(res => {
-            setPost(res.data[0]);
-        });
+        getPost();
     }, []);
+
+    async function getPost() {
+        let res = await fetch(`http://localhost:4000/post/${id}`);
+        let json = await res.json();
+        setPost(json[0]);
+    }
 
     if(id!==undefined && post !== undefined) {
         return (

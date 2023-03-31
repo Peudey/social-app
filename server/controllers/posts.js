@@ -15,7 +15,7 @@ export async function getPost(req,res) {
     db.query(query, id, (err, result)=> {
         if(err) console.log(err);
         console.log(result);
-        res.send(result);
+        res.json(result);
     });
 }
 
