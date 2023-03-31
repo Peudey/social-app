@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles/App.css';
 import Home from './components/home';
-import Post from './components/post';
-import PostFeed from './components/postFeed';
+import Post from './components/posts/post';
+import PostFeed from './components/posts/postFeed';
 import { BrowserRouter, Route, Routes} from "react-router-dom";
-import CreatePost from './components/createPost';
+import CreatePost from './components/posts/createPost';
 import User from './components/user';
 import Login from './components/login';
 
