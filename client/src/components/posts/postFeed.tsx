@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import PostCard from './postCard';
 import postTypes from './types';
 
@@ -13,10 +12,9 @@ const PostFeed = () => {
     }, [page, sort]);
 
     //takes in query 0 hot, 1 new, 2 day, 3 month, 4 year
-    const populateFeed = () => {
-        axios.get(`http://localhost:4000/post/${sort}/${page}`).then(res => {
-            setPosts(res.data);
-        });
+    async function populateFeed() {
+        let res = await fetch(`http://localhost:4000/post/${sort}/${page}`);
+        setPosts(await res.json());
     }
 
     const nextHandler = () => {
