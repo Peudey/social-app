@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 
 const CreatePost = () => { 
     const [title, setTitle] = useState("");
@@ -10,22 +9,32 @@ const CreatePost = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
 
-        axios.post("http://localhost:4000/post/submit", {
-                title: title,
-                body: body,
-                sid: subreddit,
-                aid: 1,
-            }
-        ).then ((response) => {
-            console.log(response);
-            if(response.status === 200) {
-                setTitle("");
-                setBody(response.data);
-                setSubreddit("");
-            }
-        }).catch(function (error) {
-            console.log(error);
+        let post = {
+            title: title,
+            body: body,
+            sid: subreddit,
+            aid: 1,
+        }
+
+        let response = await fetch("http://localhost:4000/post/submit", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(post)
         });
+
+        let result = await response.json();
+        console.log(response);
+        console.log(result);
+
+        if(response.ok) {
+            setTitle("");
+            setBody(result);
+            setSubreddit("");
+        } else {
+            console.log(result);
+        }
     }
 
 
