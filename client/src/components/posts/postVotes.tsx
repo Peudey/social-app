@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
-import axios from 'axios';
 
 function PostVotes(props: {score: number, id: number, vote:number}) {
     const[score, setScore] = useState(props.score);
@@ -40,28 +39,39 @@ function PostVotes(props: {score: number, id: number, vote:number}) {
         
     }
 
-    const submitVote = (vote:number) => {
-        axios.post("http://localhost:4000/vote/add", {
-                postId: props.id,
-                userId: 1,
-                vote: vote,
-            }).then ((response) => {
-                console.log(response);
-            }).catch(function (error) {
-                console.log(error);
-            });
+    const submitVote = async (vote:number) => {
+        let voteBody = {
+            postId: props.id,
+            userId: 1,
+            vote: vote,
+        }
+
+        let response = await fetch("http://localhost:4000/vote/add", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(voteBody)
+        });
+        let result = await response.json();
+        console.log(result);
     }
 
-    const removeVote = () => {
-        axios.post("http://localhost:4000/vote/remove", {
-                pid: props.id,
-                cid: null,
-                uid: 1,
-            }).then ((response) => {
-                console.log(response);
-            }).catch(function (error) {
-                console.log(error);
-            });
+    const removeVote = async () => {
+        let voteBody = {
+            postId: props.id,
+            userId: 1,
+        }
+
+        let response = await fetch("http://localhost:4000/vote/add", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(voteBody)
+        });
+        let result = await response.json();
+        console.log(result);
     }
 
   return (
