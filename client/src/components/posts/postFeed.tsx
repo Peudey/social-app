@@ -40,8 +40,8 @@ const PostFeed = () => {
                 {posts.map(({username, body, id, title, score, subreddit, posted, vote}) => (
                     <PostCard username={username} body={body} id={id} title={title} score={score} subreddit={subreddit} posted={posted} vote={vote}/>
                 ))}
-                <button onClick={(nextHandler)}>next</button>
-                <button onClick={(prevHandler)}>prev</button>
+                {posts.length===10 && <button onClick={(nextHandler)}>next</button>}
+                {page!==1 && <button onClick={(prevHandler)}>prev</button>}
             </div>
         );
     } else {
