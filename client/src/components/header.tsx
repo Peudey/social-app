@@ -11,9 +11,9 @@ const Header = () => {
       <a href='/'>Social App</a>
       <Link to="/post">Create Post</Link>
       {
-      username!==""
-      ? <Link to={`/user/${username}`}>{username}</Link>
-      : <Link to="/login">Login</Link>
+        username!==null
+        ? <Link to={`/user/${username}`}>{username}</Link>
+        : <Link to="/login">Login</Link>
       }
       
     </div>
