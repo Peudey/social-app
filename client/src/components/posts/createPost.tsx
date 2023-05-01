@@ -44,7 +44,7 @@ const CreatePost = () => {
                 <h2>Create Post</h2>
                 <form onSubmit={handleSubmit}>
                     <input
-                        id="title" 
+                        id="title"
                         type="text"
                         value={title}
                         placeholder="Post Title"
