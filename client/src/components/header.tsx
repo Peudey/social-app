@@ -3,19 +3,25 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authProvider';
 
 const Header = () => {
-  const {username} = useContext(AuthContext);
+  const {username, logout} = useContext(AuthContext);
   console.log(username);
+
+  let userButtons;
+  if (username!==null) {
+    userButtons = 
+    <div>
+      <Link to={`/user/${username}`}>{username}</Link>
+      <a onClick={logout}>logout</a>
+    </div>
+  } else {
+    userButtons = <Link to="/login">Login</Link>
+  }
   
   return (
     <div className="header">
       <a href='/'>Social App</a>
       <Link to="/post">Create Post</Link>
-      {
-        username!==null
-        ? <Link to={`/user/${username}`}>{username}</Link>
-        : <Link to="/login">Login</Link>
-      }
-      
+      {userButtons}
     </div>
   );
 }

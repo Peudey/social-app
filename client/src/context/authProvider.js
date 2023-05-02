@@ -1,10 +1,19 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import {withRouter} from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
-    const [userId, setUserId] = useState(JSON.parse(localStorage.getItem("user")).id || null);
-    const [username, setUsername] = useState(JSON.parse(localStorage.getItem("user")).username || null);
+    const [userId, setUserId] = useState(null);
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        let user = JSON.parse(localStorage.getItem("user"));
+        if(user != null) {
+            setUserId(user.id);
+            setUsername(user.username);
+        }
+    },[])
 
     const login = async (params) => {
         let response = await fetch("http://localhost:4000/user/login", {
@@ -25,10 +34,19 @@ export const AuthProvider = ({children}) => {
         } else {
             console.log(result);
         }
+        window.location.href = '/'
+    }
+
+    const logout = async () => {
+        console.log("logout attempt");
+        setUserId(null);
+        setUsername(null);
+        localStorage.removeItem("user");
+        window.location.href = '/'
     }
 
     return(
-        <AuthContext.Provider value={{userId, username, login}}>
+        <AuthContext.Provider value={{userId, username, login, logout}}>
             {children}
         </AuthContext.Provider>
     )
