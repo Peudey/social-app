@@ -36,7 +36,7 @@ body {
   margin: 0 auto;
 }
 
-.postCard, .post {
+.postCard, .postContent, .comment {
   display: flex;
   background-color: var(--color-secondary);
   width: 80%;
@@ -102,13 +102,23 @@ body {
   color: #457B9D;
 }
 
-.postTop {
+.post {
+  flex-direction: column;
+  width: 100%;
+}
+
+.postContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.postTop, .commentTop {
   display: flex;
   flex-direction: row;
   padding: 7px 0 5px 0;
 }
 
-.postTop p {
+.postTop p , .commentTop p {
   margin: 0 .5rem;
 }
 

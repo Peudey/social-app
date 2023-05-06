@@ -1,5 +1,6 @@
 import db from "../config/db.js";
 
+//@TODO add comment vote
 export async function addVote(req,res) {
     let values = [
         req.body.postId,
