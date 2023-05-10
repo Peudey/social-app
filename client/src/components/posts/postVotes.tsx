@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
+import { AuthContext } from '../../context/authProvider';
 
 function PostVotes(props: {score: number, id: number, vote:number}) {
     const[score, setScore] = useState(props.score);
     const [postVote, setVote] = useState<number|null>(props.vote);
+    const {userId} = useContext(AuthContext);
     console.log(postVote);
 
     const upVoteHandler = (event:any) => {
@@ -42,7 +44,7 @@ function PostVotes(props: {score: number, id: number, vote:number}) {
     const submitVote = async (vote:number) => {
         let voteBody = {
             postId: props.id,
-            userId: 1,
+            userId: userId,
             vote: vote,
         }
 
@@ -60,11 +62,11 @@ function PostVotes(props: {score: number, id: number, vote:number}) {
     const removeVote = async () => {
         let voteBody = {
             postId: props.id,
-            userId: 1,
+            userId: userId,
         }
 
-        let response = await fetch("http://localhost:4000/vote/add", {
-            method: "POST",
+        let response = await fetch("http://localhost:4000/vote/remove", {
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },

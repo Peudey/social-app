@@ -29,3 +29,31 @@ export async function addVote(req,res) {
         res.status(200).json("vote submitted");
     });
 }
+
+export async function removeVote(req,res) {
+    let values = [
+        req.body.postId,
+        req.body.userId,
+    ]
+
+    let query = "delete from postvotes where pid = ? AND uid = ?;";
+
+    db.query(query, [values], (err, result) => {
+        if(err) {
+            console.log(err);
+            res.status(400).json(err);
+        };
+        console.log(result);
+    });
+
+    query = "update posts set score = score - 1 where id = ?;"
+
+    db.query(query, [req.body.vote===1?1:-1,values[0]], (err, result) => {
+        if(err) {
+            console.log(err);
+            res.status(400).json(err);
+        };
+        console.log(result);
+        res.status(200).json("vote removed");
+    });
+}

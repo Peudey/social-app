@@ -22,6 +22,7 @@ export async function getPost(req,res) {
 export async function getPosts(req,res) {
     const page = req.params.page;
     const sort = req.params.sort;
+    const uid = req.params.id;
     let sortQuery = "";
     console.log(sort);
     
@@ -49,13 +50,13 @@ export async function getPosts(req,res) {
     "from posts p " +
     "JOIN users u ON p.aid = u.id " +
     "JOIN subreddits s ON p.sid = s.id " +
-    "left join postVotes pv ON pv.pid = p.id AND pv.uid = 1 " +
+    "left join postVotes pv ON pv.pid = p.id AND pv.uid = ? " +
     sortQuery + " " +
     "LIMIT 10 " +
     "OFFSET ?;";
 
     console.log(query);
-    db.query(query, page * 10, (err, result) => {
+    db.query(query, [uid, page * 10], (err, result) => {
         if(err) console.log(err);
         console.log(result);
         res.send(result);
