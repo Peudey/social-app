@@ -7,11 +7,11 @@ const PostFeed = () => {
     const[posts, setPosts] = useState<postTypes[]|undefined>();
     const[page, setPage] = useState(0);
     const[sort, setSort] = useState(0);
-    const {userId} = useContext(AuthContext);
+    let {userId} = useContext(AuthContext);
 
     useEffect(()=>{ 
         populateFeed();
-    }, [page, sort]);
+    }, [page, sort, userId]);
 
     //takes in query 0 hot, 1 new, 2 day, 3 month, 4 year
     async function populateFeed() {

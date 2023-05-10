@@ -3,16 +3,17 @@ import moment from "moment";
 
 export async function getPost(req,res) {
     const id = req.params.id;
+    const uid = req.params.uid;
     console.log(id);
 
     let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted, pv.vote " +
     "from posts p " +
     "JOIN users u ON p.aid = u.id " +
     "JOIN subreddits s ON p.sid = s.id " +
-    "left join postVotes pv ON pv.pid = p.id AND pv.uid = 1 " +
+    "left join postVotes pv ON pv.pid = p.id AND pv.uid = ? " +
     "WHERE p.id = ?;";
 
-    db.query(query, id, (err, result)=> {
+    db.query(query, [uid, id], (err, result)=> {
         if(err) console.log(err);
         console.log(result);
         res.json(result);
@@ -22,7 +23,7 @@ export async function getPost(req,res) {
 export async function getPosts(req,res) {
     const page = req.params.page;
     const sort = req.params.sort;
-    const uid = req.params.id;
+    const uid = req.params.uid;
     let sortQuery = "";
     console.log(sort);
     

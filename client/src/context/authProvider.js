@@ -13,7 +13,7 @@ export const AuthProvider = ({children}) => {
             setUserId(user.id);
             setUsername(user.username);
         }
-    },[])
+    })
 
     const login = async (params) => {
         let response = await fetch("http://localhost:4000/user/login", {

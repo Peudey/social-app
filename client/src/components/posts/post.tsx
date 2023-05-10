@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PostVotes from './postVotes';
 import Comment from '../comments/comment';
 import { Link, useParams } from 'react-router-dom';
 import commentTypes from '../comments/types';
+import { AuthContext } from '../../context/authProvider';
 
 const Post = () => {
     const[post, setPost] = useState<any|undefined>();
     const[comments, setComments] = useState<commentTypes[]>();
     let {id} = useParams();
+    const {userId} = useContext(AuthContext);
 
     useEffect(()=> { 
         getPost();
@@ -15,7 +17,7 @@ const Post = () => {
     }, []);
 
     async function getPost() {
-        let res = await fetch(`http://localhost:4000/post/${id}`);
+        let res = await fetch(`http://localhost:4000/post/${id}/${userId}`);
         let json = await res.json();
         setPost(json[0]);
     }
