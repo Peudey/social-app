@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import PostVotes from './postVotes';
 import postTypes from './types';
 
 const PostCard = (props:postTypes) => {
-    const {body, title, username, id, score, subreddit, posted, vote} = props;
+  let {username, body, id, title, score, subreddit, posted, vote} = props;
 
     return (
       <div className="postCard">
-        <PostVotes score={score} id={id} vote={vote} key={score}/>
+        <PostVotes score={score} id={id} vote={vote} key={vote}/>
         <div className="postBody">
             <span className='postTop'>
                 <Link to={`/${subreddit}`}>{subreddit}</Link>

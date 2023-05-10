@@ -6,7 +6,6 @@ function PostVotes(props: {score: number, id: number, vote:number}) {
     const[score, setScore] = useState(props.score);
     const [postVote, setVote] = useState<number|null>(props.vote);
     const {userId} = useContext(AuthContext);
-    console.log(postVote);
 
     const upVoteHandler = (event:any) => {
         if(postVote===null) {
