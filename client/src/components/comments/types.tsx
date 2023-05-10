@@ -1,7 +1,10 @@
 interface commentTypes {
     id: number,
-    username?: string,
-    body?: string,
+    pid: number,
+    cid: number|null,
+    username: string,
+    body: string,
+    children: commentTypes[],
 }
 
 export default commentTypes;

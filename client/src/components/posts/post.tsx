@@ -9,7 +9,7 @@ const Post = () => {
     const[comments, setComments] = useState<commentTypes[]>();
     let {id} = useParams();
 
-    useEffect(()=>{ 
+    useEffect(()=> { 
         getPost();
         getComments();
     }, []);
@@ -23,13 +23,23 @@ const Post = () => {
     async function getComments() {
         let res = await fetch(`http://localhost:4000/comment/post/${id}`);
         let json = await res.json();
+        if(json) {
+            let commentsWithChildren = json.map((comment:commentTypes) => ({
+                ...comment,
+                children: []
+            }));
+            commentsWithChildren.forEach((element:commentTypes) => {
+                element.children = commentsWithChildren.filter((child:commentTypes) => child.cid && child.cid == element.id)
+            });
+            json = commentsWithChildren.filter((element:commentTypes) => element.cid === null);
+        }
         setComments(json);
     }
 
     let commentFormat;
-    if(comments && comments.length > 0){
-        commentFormat = comments.map(({username, body, id}) => (
-            <Comment body={body} id={id} username={username} key={id}/>
+    if(comments && comments.length > 0) {
+        commentFormat = comments.map(({username, body, id, pid, cid, children}) => (
+            <Comment body={body} id={id} username={username} pid={pid} cid={cid} children={children} key={id}/>
         ))
     } else {
         commentFormat = <div className='comment'><p>Be the first to comment!</p></div>

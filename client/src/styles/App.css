@@ -201,3 +201,7 @@ body {
   border-radius: 5px;
   padding: 1rem;
 }
+
+.parentComment ul{
+  list-style-type: none;
+}
