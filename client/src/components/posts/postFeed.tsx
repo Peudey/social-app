@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PostCard from './postCard';
 import postTypes from './types';
+import { AuthContext } from '../../context/authProvider';
 
 const PostFeed = () => {
     const[posts, setPosts] = useState<postTypes[]|undefined>();
     const[page, setPage] = useState(0);
     const[sort, setSort] = useState(0);
+    const {userId} = useContext(AuthContext);
 
     useEffect(()=>{ 
         populateFeed();
@@ -13,7 +15,7 @@ const PostFeed = () => {
 
     //takes in query 0 hot, 1 new, 2 day, 3 month, 4 year
     async function populateFeed() {
-        let res = await fetch(`http://localhost:4000/post/${sort}/${page}`);
+        let res = await fetch(`http://localhost:4000/post/${sort}/${page}/${userId}`);
         setPosts(await res.json());
     }
 

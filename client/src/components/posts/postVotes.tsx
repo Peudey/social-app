@@ -79,13 +79,13 @@ function PostVotes(props: {score: number, id: number, vote:number}) {
   return (
     <div className="votes">
         {postVote===1?
-            <BiUpArrowAlt className="vote" id="upVote" size={40} onClick={upVoteHandler}/>:
-            <BiUpArrowAlt className="vote" size={40} onClick={upVoteHandler}/>
+            <BiUpArrowAlt className="vote" id="upVote" size={40} onClick={userId&&upVoteHandler}/>:
+            <BiUpArrowAlt className="vote" size={40} onClick={userId&&upVoteHandler}/>
         }
         <p>{score}</p>
         {postVote===0?
-            <BiDownArrowAlt className="vote" id="downVote" size={40} onClick={downVoteHandler}/>:
-            <BiDownArrowAlt className="vote" size={40} onClick={downVoteHandler}/>
+            <BiDownArrowAlt className="vote" id="downVote" size={40} onClick={userId&&downVoteHandler}/>:
+            <BiDownArrowAlt className="vote" size={40} onClick={userId&&downVoteHandler}/>
         }
     </div>
   );
