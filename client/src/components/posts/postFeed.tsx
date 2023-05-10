@@ -8,10 +8,10 @@ const PostFeed = () => {
     const[page, setPage] = useState(0);
     const[sort, setSort] = useState(0);
     const[update,setUpdate] = useState(false);
-    let {userId} = useContext(AuthContext);
+    let {userId, loading} = useContext(AuthContext);
 
-    useEffect(()=>{ 
-        populateFeed();
+    useEffect(()=> { 
+        if(!loading) {populateFeed();}
     }, [page, sort, userId]);
 
     //takes in query 0 hot, 1 new, 2 day, 3 month, 4 year
@@ -35,8 +35,8 @@ const PostFeed = () => {
     let postFeed = posts?.map(({username, body, id, title, score, subreddit, posted, vote}) => (
         <PostCard username={username} body={body} id={id} title={title} score={score} subreddit={subreddit} posted={posted} vote={vote} key={id}/>
     ))
-
-    if(posts !== undefined) {
+    if(loading){return(<p>loading</p>)}
+    if(posts !== undefined && !loading) {
         return (
             <div className='postFeed'>
                 <span className='feedSort'>

@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [userId, setUserId] = useState(null);
     const [username, setUsername] = useState(null);
+    const[loading, setloading] = useState(true);
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user"));
@@ -13,6 +14,7 @@ export const AuthProvider = ({children}) => {
             setUserId(user.id);
             setUsername(user.username);
         }
+        setloading(false);
     })
 
     const login = async (params) => {
@@ -46,7 +48,7 @@ export const AuthProvider = ({children}) => {
     }
 
     return(
-        <AuthContext.Provider value={{userId, username, login, logout}}>
+        <AuthContext.Provider value={{userId, username, login, logout, loading}}>
             {children}
         </AuthContext.Provider>
     )
