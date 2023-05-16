@@ -1,13 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
-import {withRouter} from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
     const [userId, setUserId] = useState(null);
     const [username, setUsername] = useState(null);
-    const[loading, setloading] = useState(true);
+    const [loading, setloading] = useState(true);
 
+    //Attempts to fetch 'user' from local storage, sets state using those values. Sets loading to false after fetching data
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user"));
         if(user != null) {
@@ -17,6 +17,8 @@ export const AuthProvider = ({children}) => {
         setloading(false);
     })
 
+    //Call login on database. Stores information in localstorage as 'user'
+    //@TODO Implement JWT 
     const login = async (params) => {
         let response = await fetch("http://localhost:4000/user/login", {
             method: "POST",
@@ -25,10 +27,7 @@ export const AuthProvider = ({children}) => {
             },
             body: JSON.stringify(params)
         });
-        console.log("login attempt")
         let result = await response.json();
-        console.log(response);
-        console.log(result);
         if(response.ok){
             setUserId(result.id);
             setUsername(params.username);
@@ -39,8 +38,9 @@ export const AuthProvider = ({children}) => {
         window.location.href = '/'
     }
 
+    //Reset user info to null.
+    //@TODO Implement JWT and release token 
     const logout = async () => {
-        console.log("logout attempt");
         setUserId(null);
         setUsername(null);
         localStorage.removeItem("user");
