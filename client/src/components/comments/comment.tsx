@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import commentTypes from './types';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Comment = (props:commentTypes) => {
     const[showChildren, setShown] = useState(true);

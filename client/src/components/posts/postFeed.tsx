@@ -7,7 +7,6 @@ const PostFeed = () => {
     const[posts, setPosts] = useState<postTypes[]|undefined>();
     const[page, setPage] = useState(0);
     const[sort, setSort] = useState(0);
-    const[update,setUpdate] = useState(false);
     let {userId, loading} = useContext(AuthContext);
 
     useEffect(()=> { 
