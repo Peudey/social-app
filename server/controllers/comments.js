@@ -11,7 +11,6 @@ export async function getPostComments(req, res) {
 
     db.query(query, id, (err, result)=> {
         if(err) console.log(err);
-        console.log(result);
         res.json(result);
     });
 }

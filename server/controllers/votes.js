@@ -15,7 +15,6 @@ export async function addVote(req,res) {
             console.log(err);
             res.status(400).json(err);
         };
-        console.log(result);
     });
 
     query = "update posts set score = score + (?) where id = ?;"
@@ -25,7 +24,6 @@ export async function addVote(req,res) {
             console.log(err);
             res.status(400).json(err);
         };
-        console.log(result);
         res.status(200).json("vote submitted");
     });
 }
@@ -43,7 +41,6 @@ export async function removeVote(req,res) {
             console.log(err);
             res.status(400).json(err);
         };
-        console.log(result);
     });
 
     query = "update posts set score = score - 1 where id = ?;"
@@ -53,7 +50,6 @@ export async function removeVote(req,res) {
             console.log(err);
             res.status(400).json(err);
         };
-        console.log(result);
         res.status(200).json("vote removed");
     });
 }

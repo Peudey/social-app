@@ -10,7 +10,6 @@ export async function login(req, res) {
 
     db.query(query, username, (err, result) => {
         if(err) console.log(err);
-        console.log(result);
         if(result.length == 0 || result[0].pass != password) {
             res.status(400).json("Incorrect username or password");
         } else {

@@ -4,7 +4,6 @@ import moment from "moment";
 export async function getPost(req,res) {
     const id = req.params.id;
     const uid = req.params.uid;
-    console.log(id);
 
     let query = "SELECT p.id, p.title, p.body, s.subName as subreddit, p.score, u.username, p.posted, pv.vote " +
     "from posts p " +
@@ -15,7 +14,6 @@ export async function getPost(req,res) {
 
     db.query(query, [uid, id], (err, result)=> {
         if(err) console.log(err);
-        console.log(result);
         res.json(result);
     });
 }
@@ -25,7 +23,6 @@ export async function getPosts(req,res) {
     const sort = req.params.sort;
     const uid = req.params.uid;
     let sortQuery = "";
-    console.log(sort);
     
     switch(sort) {
         case '0':
@@ -56,10 +53,8 @@ export async function getPosts(req,res) {
     "LIMIT 10 " +
     "OFFSET ?;";
 
-    console.log(query);
     db.query(query, [uid, page * 10], (err, result) => {
         if(err) console.log(err);
-        console.log(result);
         res.send(result);
     });
 }
@@ -76,16 +71,13 @@ export async function publishPost(req, res) {
         moment(Date.now()).format("YYYY-MM-DD")
     ]
 
-    console.log(values);
-
     let query = "insert into posts(aid, title, sid, body, score, posted) values(?);";
 
     db.query(query, [values], (err, result) => {
         if(err) {
-            console.log(err)
+            console.log(err);
             res.status(400).json(err);
         };
-        console.log(result);
         res.status(200).json("Post submitted!");
     });
 }
